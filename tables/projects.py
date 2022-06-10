@@ -27,7 +27,7 @@ class Projects(BoxLayout):
         self.orientation = 'vertical'
 
         header = BoxLayout(padding=8, size_hint=(1, 0.1), orientation = 'vertical', spacing=10)
-        header_btn = BoxLayout(padding=8, size_hint=(0.95, 8), pos_hint={"center_y": 0.5, "center_x": 0.5})
+        header_btn = BoxLayout(padding=8, size_hint=(0.95, 4.5), pos_hint={"center_y": 0.5, "center_x": 0.5})
 
         page_name = Label(text='Projects', color='black', font_size=25, size_hint=(0.95, 1.9))
 
