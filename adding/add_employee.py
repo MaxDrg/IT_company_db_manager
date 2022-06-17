@@ -135,10 +135,10 @@ class Add_employee(BoxLayout):
         if not self.name.text == '' and not self.age.text == '' and not self.level.text == 'Level':
 
             if rules.age(int(self.age.text)):
-                db.add_employee(self.name.text, self.level.text, int(self.age.text), self.accepted.text)
-            else:
                 self.error.text = 'Employee too young!'
                 return
+            
+            db.add_employee(self.name.text, self.level.text, int(self.age.text), self.accepted.text)
 
             self.error.text = ''
             self.name.text = ''

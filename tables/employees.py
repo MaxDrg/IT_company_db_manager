@@ -28,7 +28,7 @@ class Employees(BoxLayout):
 
         header = BoxLayout(padding=8, size_hint=(1, 0.1), orientation = 'vertical', spacing=10)
 
-        page_name = Label(text='Expertise Levels', color='black', font_size=25)
+        page_name = Label(text='Employees', color='black', font_size=25)
         head_btn = Button(text="Find employees by level", size_hint=(0.95, 1.5), pos_hint={"center_y": 0.5, "center_x": 0.5})
         head_btn.bind(on_press=self.dialog_input_show)
 

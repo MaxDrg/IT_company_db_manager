@@ -1,3 +1,5 @@
+from os import lseek
+from re import L
 import psycopg2
 
 class Database: 
@@ -188,3 +190,21 @@ class Database:
         with self.conn.cursor() as cursor:
             cursor.execute("""UPDATE expertise_levels SET salary = %s WHERE level_id = %s;""", (salary, level_id, ))
             self.conn.commit()
+
+    def get_employees_by_project(self, project_name: str):
+        with self.conn.cursor() as cursor:
+            cursor.execute("""select expertise_levels.name
+                                from tasks
+                                inner join projects on projects.id = tasks.project
+                                inner join employees on employees.id = tasks.employee
+                                inner join expertise_levels using(level_id)
+                                where projects.project_name = %s;""", (project_name, ))
+            return cursor.fetchall()
+
+    def get_team_lead_by_project(self, project_name: str):
+        with self.conn.cursor() as cursor:
+            cursor.execute("""select tasks.position
+                                from tasks
+                                inner join projects on projects.id = tasks.project
+                                where projects.project_name = %s and tasks.position = 'Team lead';""", (project_name, ))
+            return cursor.fetchone()

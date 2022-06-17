@@ -52,3 +52,31 @@ class Rules:
                     return True
         else:
             return False
+
+    def check_team_lead(self, project_name: str, position: str):
+        team_lead = db.get_team_lead_by_project(project_name)
+
+        if team_lead and position == 'Team lead':
+            return True
+        else:
+            return False
+
+    def check_team(self, project_name: str, employee_name: str):
+        level = db.get_employee_level(employee_name)
+        team = db.get_employees_by_project(project_name)
+
+        jun = 0
+        sen = 0
+
+        for employee in team:
+
+            if employee[0] == 'Junior':
+                jun += 1
+            if employee[0] == 'Senior':
+                sen += 1
+            
+        print(sen)
+        if jun >= 9 and level[0] == 'Junior': return True
+        if sen >= 3 and level[0] == 'Senior': return True
+
+        return False

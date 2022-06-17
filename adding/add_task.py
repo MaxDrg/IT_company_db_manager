@@ -113,6 +113,14 @@ class Add_task(BoxLayout):
                 self.error.text = 'Junior Team lead can not work!'
                 return
 
+            if rules.check_team(self.project.text, self.employee.text):
+                self.error.text = 'No more developers!'
+                return
+
+            if rules.check_team_lead(self.project.text, self.position.text):
+                self.error.text = 'Too many team leads!'
+                return
+
             db.add_task(self.employee.text, self.project.text, self.position.text)
 
             self.employee.text = 'Employee'
